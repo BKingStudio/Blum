@@ -1,137 +1,124 @@
-*Linux, Termux and Windows Supported*
+## Blum Bot
 
-*Support:* Join Telegram group for queries - https://t.me/BKingStudio
+A comprehensive auto-claiming bot for the *Blum Telegram Bot*.
+Automates farming tasks, referrals, games, and more!
 
 
-*Linux Setup:*
+## Features
 
-*Step 1: Install Required Packages*
+- [x] Automated Farming Claim
+- [x] Auto Start Farming Process
+- [x] Auto Referral Bonus Collection
+- [x] Auto Task Completion
+- [x] Game Automation and Reward Collection
+- [x] Daily Bonus Auto Claim
+- [x] Multi-Account Support for Better Efficiency
 
-```
-bash
-sudo apt update
-sudo apt install git python3 python3-pip
-```
+# Register
+Start automating today by registering through the following [Blum Linl](https://t.me/blum/app?startapp=ref_YnEvTu7jha).
 
-*Step 2: Clone Repository*
+## Join Our Community
 
-```
-bash
+For support and updates, join the [Telegram Group BKingStudio](https://t.me/BKingStudio).
+
+## How to Use
+
+### [Windows](#windows)
+### [Linux](#linux)
+### [Termux](#termux)
+
+### Windows
+
+1. Ensure Python and Git are installed on your system.
+    - Python: [Python Download](https://python.org/)
+    - Git: [Git Download](https://git-scm.com/)
+2. Clone this repository:
+```shell
 git clone https://github.com/BKingStudio/Blum.git
 ```
-
-*Step 3: Navigate to Repository*
-
-```
-bash
+3. Navigate to Blum directory:
+```shell
 cd Blum
 ```
-
-*Step 4: Install Dependencies*
-
+4. Install required libraries:
+```shell
+python -m pip install -r pip.txt
 ```
-bash
-pip3 install -r requirements.txt
-```
+5. Edit `data.txt` and input your auth token.
 
-*Step 5: Run Python Script*
-
-```
-bash
-python3 blum.py
+6. Run the script:
+```shell
+python Blum.py
 ```
 
 
-*Termux Setup:*
+### Linux
 
-*Step 1: Update Package List*
-
+1. Install Python and Git:
+```shell
+sudo apt install python3 python3-pip
+sudo apt install git
 ```
-bash
-pkg update
-```
-
-*Step 2: Install Required Packages*
-
-```
-bash
-pkg install git python
-```
-
-*Step 3: Clone Repository*
-
-```
-bash
+2. Clone this repository:
+```shell
 git clone https://github.com/BKingStudio/Blum.git
 ```
-
-*Step 4: Navigate to Repository*
-
-```
-bash
+3. Navigate to Blum directory:
+```shell
 cd Blum
 ```
-
-*Step 5: Install Dependencies*
-
+4. Install required libraries:
+```shell
+python3 -m pip install -r pip.txt
 ```
-bash
-pip install -r requirements.txt
-```
-
-*Step 6: Run Python Script*
-
-```
-bash
-python blum.py
+5. Edit `data.txt` and input your auth token.
+6. Run the script:
+```shell
+python3 Blum.py
 ```
 
 
-*Windows Setup:*
+### Termux
 
-*Step 1: Install Git*
-
-Download and install Git from https://git-scm.com/download/win.
-
-*Step 2: Install Python*
-
-Download and install Python from https://www.python.org/downloads/.
-
-*Step 3: Clone Repository*
-
-Open Git Bash and run:
+1. Install Python and Git:
+```shell
+pkg install python
+pkg install git
 ```
-bash
+2. Clone this repository:
+```shell
 git clone https://github.com/BKingStudio/Blum.git
 ```
-
-*Step 4: Navigate to Repository*
-
-```
-bash
+3. Navigate to Blum directory:
+```shell
 cd Blum
 ```
-
-*Step 5: Install Dependencies*
-
+4. Install required libraries:
+```shell
+python -m pip install -r pip.txt
 ```
-bash
-pip install -r requirements.txt
-```
-
-*Step 6: Run Python Script*
-
-```
-bash
-python blum.py
+5. Edit `data.txt` and input your auth token.
+6. Run the script:
+```shell
+python Blum.py
 ```
 
 
-*Troubleshooting:*
-
-- Ensure Python and Git are installed correctly.
-- Verify dependencies are installed successfully.
-- Check for any syntax errors in the script.
+## License
+This project is licensed under the MIT License.
 
 
-*Join Telegram group for support and queries:* https://t.me/BKingStudio
+## *Disclaimer*
+This project is for educational purposes only. Use at your own risk.
+
+
+## *Contributing*
+Pull requests are welcome! Contact us on the [BKingStudio Telegram Group](https://t.me/BKingStudio) for more information.
+
+
+### Editor
+- https://github.com/BKingStudio
+
+
+## *Acknowledgments*
+Special thanks to the Blum Telegram Bot developers and the open-source community.
