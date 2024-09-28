@@ -9,10 +9,8 @@ import sys
 from datetime import datetime
 from urllib.parse import parse_qs
 
-# Initialize Colorama
 init(autoreset=True)
 
-# Helper function to get headers for requests
 def get_headers(token):
     return {
         "accept": "application/json, text/plain, */*",
@@ -27,7 +25,6 @@ def get_headers(token):
         ])
     }
 
-# Function to parse username from query ID
 def parse_username_from_query(query):
     try:
         parsed_query = parse_qs(query)
@@ -39,7 +36,6 @@ def parse_username_from_query(query):
         print(f"{Fore.RED}Error parsing username from query: {e}{Style.RESET_ALL}")
     return 'Unknown'
 
-# Function to get tasks from the API
 def get_task(token, proxies=None):
     url = "https://earn-domain.blum.codes/api/v1/tasks"
     try:
@@ -52,7 +48,6 @@ def get_task(token, proxies=None):
         print(f"{Fore.RED}Error fetching tasks: {e}{Style.RESET_ALL}")
         return []
 
-# Function to start a task
 def start_task(token, task_id, proxies=None):
     url = f"https://earn-domain.blum.codes/api/v1/tasks/{task_id}/start"
     try:
@@ -68,7 +63,6 @@ def start_task(token, task_id, proxies=None):
     except Exception as e:
         return None
 
-# Function to claim a task
 def claim_task(token, task_id, proxies=None):
     url = f"https://earn-domain.blum.codes/api/v1/tasks/{task_id}/claim"
     try:
@@ -84,7 +78,6 @@ def claim_task(token, task_id, proxies=None):
     except Exception as e:
         return None
 
-# Function to validate a task with a keyword
 def validate_task(token, task_id, keyword, proxies=None):
     url = f"https://earn-domain.blum.codes/api/v1/tasks/{task_id}/validate"
     try:
@@ -100,7 +93,6 @@ def validate_task(token, task_id, keyword, proxies=None):
     except Exception as e:
         return False
 
-# Function to get a keyword from a file based on a task name
 def get_value_from_title(filename, target_title):
     try:
         with open(filename, "r") as file:
@@ -113,7 +105,6 @@ def get_value_from_title(filename, target_title):
         print(f"{Fore.RED}Keyword file '{filename}' not found.{Style.RESET_ALL}")
     return None
 
-# Function to handle a specific task
 def do_task(token, task_id, task_name, task_status, keyword_file, proxies=None):
     if task_status == "FINISHED":
         print(f"{Fore.RED}{task_name}: Completed Already!{Style.RESET_ALL}")
@@ -132,7 +123,7 @@ def do_task(token, task_id, task_name, task_status, keyword_file, proxies=None):
     elif task_status == "STARTED":
         print(f"{Fore.RED}{task_name}: Started but not ready to claim{Style.RESET_ALL}")
     elif task_status == "READY_FOR_VERIFY":
-        # Start the task before validation
+
         start_task(token=token, task_id=task_id, proxies=proxies)
         keyword = get_value_from_title(filename=keyword_file, target_title=task_name)
         if keyword:
@@ -150,7 +141,6 @@ def do_task(token, task_id, task_name, task_status, keyword_file, proxies=None):
     else:
         print(f"{Fore.RED}{task_name}: Unknown Status - {task_status}{Style.RESET_ALL}")
 
-# Function to process specific tasks
 def process_specific_tasks(token, keyword_file, task_ids, proxies=None):
     try:
         earn_section = get_task(token=token, proxies=proxies)
@@ -199,7 +189,6 @@ def process_specific_tasks(token, keyword_file, task_ids, proxies=None):
     except Exception as e:
         print(f"{Fore.RED}Error processing specific tasks: {e}{Style.RESET_ALL}")
 
-# Existing functions to clear terminal and print ASCII art
 def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -215,7 +204,6 @@ def art():
 
     print(Fore.CYAN + " This Script is Not For Sale \n Join our Telegram Channel: @BKingStudio" + Style.RESET_ALL)
 
-# Function to get query IDs from a file
 def get_query_ids_from_file(file_path):
     try:
         with open(file_path, 'r') as file:
@@ -228,7 +216,6 @@ def get_query_ids_from_file(file_path):
         print(f"Error: {e}")
         return []
 
-# Function to save a token to a file
 def save_token(token, file_path):
     try:
         with open(file_path, 'w') as file:
@@ -236,7 +223,6 @@ def save_token(token, file_path):
     except Exception as e:
         print(f"Error saving token: {e}")
 
-# Function to clear the token file
 def clear_token_file(file_path):
     try:
         with open(file_path, 'w') as file:
@@ -245,7 +231,6 @@ def clear_token_file(file_path):
     except Exception as e:
         print(f"Error clearing token file: {e}")
 
-# Function to get a new token
 def get_new_token(query_id):
     headers = {
         "accept": "application/json, text/plain, */*",
@@ -280,7 +265,6 @@ def get_new_token(query_id):
             print(f"{Fore.RED + Style.BRIGHT}Network Problem")
             countdown_timer(5)
 
-# Function to claim farming
 def claim_farming(token):
     url = "https://game-domain.blum.codes/api/v1/farming/claim"
     headers = get_headers(token)
@@ -296,7 +280,6 @@ def claim_farming(token):
         pass
     return False
 
-# Function to check farming status
 def check_farming_status(token):
     url = "https://game-domain.blum.codes/api/v1/user/balance"
     headers = get_headers(token)
@@ -311,7 +294,6 @@ def check_farming_status(token):
         pass
     return False
 
-# Function to start farming
 def start_farming(token):
     if check_farming_status(token):
         url_farming = "https://game-domain.blum.codes/api/v1/farming/start"
@@ -334,7 +316,6 @@ def start_farming(token):
     else:
         print(f"{Fore.RED + Style.BRIGHT}Farming Already Started [✓]")
 
-# Function to get daily reward
 def get_daily_reward(token):
     url = "https://game-domain.blum.codes/api/v1/daily-reward"
     headers = get_headers(token)
@@ -351,13 +332,11 @@ def get_daily_reward(token):
         pass
     return False
 
-# Function to check if it's time for daily reward
 def check_daily_reward_time():
     current_time = datetime.now()
     target_time = current_time.replace(hour=11, minute=30, second=0, microsecond=0)
     return current_time >= target_time
 
-# Function to get new balance
 def new_balance(token):
     url = "https://game-domain.blum.codes/api/v1/user/balance"
     headers = get_headers(token)
@@ -374,7 +353,6 @@ def new_balance(token):
         countdown_timer(random.randint(5, 10))
     return None, None
 
-# Function to play a game
 def play_game(token):
     url = "https://game-domain.blum.codes/api/v1/game/play"
     headers = get_headers(token)
@@ -391,7 +369,6 @@ def play_game(token):
         countdown_timer(random.randint(5, 10))
     return None
 
-# Function to claim game rewards
 def claim_game(token, gameId, points):
     url = "https://game-domain.blum.codes/api/v1/game/claim"
     headers = get_headers(token)
@@ -406,7 +383,6 @@ def claim_game(token, gameId, points):
         countdown_timer(random.randint(5, 10))
     return 0
 
-# Function to solve tasks
 def solve_task(token):
     url_task = "https://earn-domain.blum.codes/api/v1/tasks"
     headers = get_headers(token)
@@ -442,7 +418,6 @@ def solve_task(token):
         print(f"{Fore.RED + Style.BRIGHT}Failed to fetch tasks due to a network error.")
         countdown_timer(random.randint(5, 10))
 
-# Function to solve a specific task
 def solve(task, token):
     headers = get_headers(token)
     task_id = task.get("id")  # Use task id
@@ -466,7 +441,6 @@ def solve(task, token):
         if res.json().get("status") == "FINISHED":
             print(f"{Fore.GREEN}Success complete task: {task_name} [✓]!")
 
-# Function to solve specific tasks
 def solve_specific_tasks(token, task_ids):
     url_task = "https://earn-domain.blum.codes/api/v1/tasks"
     headers = get_headers(token)
@@ -503,7 +477,6 @@ def solve_specific_tasks(token, task_ids):
         print(f"{Fore.RED + Style.BRIGHT}Failed to fetch tasks due to a network error.")
         countdown_timer(random.randint(5, 10))
 
-# Function for countdown timer
 def countdown_timer(seconds):
     for remaining in range(seconds, 0, -1):
         mins, secs = divmod(remaining, 60)
@@ -513,12 +486,10 @@ def countdown_timer(seconds):
     print(' ' * 40, end='\r')  # Clears the line after the countdown
     print(f"{Fore.GREEN + Style.BRIGHT}Timer ended. Proceeding...")
 
-# Function to handle signals
 def signal_handler(sig, frame):
     print("\nExiting gracefully...")
     sys.exit(0)
 
-# Function to display all tasks for a single account
 def display_all_tasks_for_single_account(token):
     tasks_data = get_task(token=token)
     if tasks_data:
@@ -541,13 +512,12 @@ def display_all_tasks_for_single_account(token):
     else:
         print(f"{Fore.RED + Style.BRIGHT}Failed to fetch tasks.")
 
-# Main function with modified logic
 def main():
     signal.signal(signal.SIGINT, signal_handler)  # Handle CTRL + C
     clear_terminal()
     art()
 
-    # Specific task IDs
+
     task_ids = [
         "38f6dd88-57bd-4b42-8712-286a06dac0a0",
         "6af85c01-f68d-4311-b78a-9cf33ba5b151",
@@ -576,7 +546,7 @@ def main():
         if user_choice == 'showtasks':
             query_ids = get_query_ids_from_file('data.txt')
             if query_ids:
-                query_id = query_ids[0]  # Only show tasks for the first account
+                query_id = query_ids[0] 
                 countdown_timer(random.randint(3, 5))
                 token = get_new_token(query_id)
                 if not token:
@@ -596,7 +566,6 @@ def main():
 
         query_ids = get_query_ids_from_file('data.txt')
 
-        # Prompt for auto-task options once
         if user_choice == '1':
             auto_task_choice = input("Auto Task (y/n): ").strip().lower()
             auto_game_choice = input("Auto Game Play (y/n): ").strip().lower()
@@ -607,7 +576,6 @@ def main():
                 print(f"{Fore.RED + Style.BRIGHT}Account No.{index + 1}: Query ID not found.")
                 continue
 
-            # Parse username from query ID
             username = parse_username_from_query(query_id)
 
             countdown_timer(random.randint(3, 5))
@@ -625,7 +593,7 @@ def main():
 
             try:
                 if user_choice == '1':
-                    # Automatically perform daily check-in, farming claim, and start
+                    
                     if check_daily_reward_time():
                         if get_daily_reward(token):
                             countdown_timer(random.randint(2, 3))
@@ -663,7 +631,7 @@ def main():
                         print(f"{Fore.GREEN + Style.BRIGHT}Total Reward Claimed: {total_reward} points [✓]")
 
                     if auto_new_task_choice == 'y':
-                        keyword_file = 'Keyword.txt'  # Assuming the keyword file path
+                        keyword_file = 'Keyword.txt'
                         process_specific_tasks(token, keyword_file, task_ids)
 
                 if user_choice == '2':
@@ -705,7 +673,7 @@ def main():
                     solve_specific_tasks(token, task_ids)
 
                 if user_choice == '6':
-                    keyword_file = 'Keyword.txt'  # Assuming the keyword file path
+                    keyword_file = 'Keyword.txt'
                     process_specific_tasks(token, keyword_file, task_ids)
 
             finally:
